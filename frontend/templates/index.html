@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Fraud Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Card Fraud Detection</h1>
+        
+        <form id="prediction-form">
+            <div class="form-grid">
+                
+                <div class="input-group">
+                    <label>Merchant (Encoded ID)</label>
+                    <input type="number" id="merchant" placeholder="Enter Merchant ID (e.g. 1)" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Category</label>
+                    <select id="category" required>
+                        <option value="0">Entertainment</option>
+                        <option value="1">Food & Dining</option>
+                        <option value="2">Gas & Transport</option>
+                        <option value="3">Grocery (Net)</option>
+                        <option value="4">Grocery (Pos)</option>
+                        <option value="5">Health & Fitness</option>
+                        <option value="6">Home</option>
+                        <option value="7">Kids & Pets</option>
+                        <option value="8">Misc (Net)</option>
+                        <option value="9">Misc (Pos)</option>
+                        <option value="10">Personal Care</option>
+                        <option value="11">Shopping (Net)</option>
+                        <option value="12">Shopping (Pos)</option>
+                        <option value="13">Travel</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Amount ($)</label>
+                    <input type="number" step="0.01" id="amt" placeholder="e.g. 50.00" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Gender</label>
+                    <select id="gender" required>
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Latitude</label>
+                    <input type="number" step="0.0001" id="lat" placeholder="e.g. 33.9659" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Longitude</label>
+                    <input type="number" step="0.0001" id="long" placeholder="e.g. -80.9355" required>
+                </div>
+
+                <div class="input-group">
+                    <label>City Population</label>
+                    <input type="number" id="city_pop" placeholder="e.g. 333497" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Job (Encoded ID)</label>
+                    <input type="number" id="job" placeholder="Enter Job ID" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Unix Time</label>
+                    <input type="number" id="unix_time" placeholder="e.g. 1371816865" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Merchant Latitude</label>
+                    <input type="number" step="0.0001" id="merch_lat" placeholder="e.g. 33.9863" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Merchant Longitude</label>
+                    <input type="number" step="0.0001" id="merch_long" placeholder="e.g. -81.2007" required>
+                </div>
+
+            </div>
+
+            <button type="submit">Predict Transaction</button>
+
+        </form>
+
+        <div class="info-section" style="margin-top: 20px; font-size: 0.9em; color: #94a3b8; background: #1e293b; padding: 15px; border-radius: 8px;">
+            <h3>Input Information:</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li><strong>Gender:</strong> Female = 0, Male = 1</li>
+                <li><strong>Category:</strong> Encoded from 0 to 13 (see dropdown)</li>
+                <li><strong>Merchant/Job:</strong> Numerical IDs assigned during preprocessing</li>
+                <li><strong>Unix Time:</strong> Transaction timestamp in seconds</li>
+                <li><strong>Coordinates:</strong> Latitude and Longitude of transaction and merchant</li>
+            </ul>
+        </div>
+
+        <div class="result-box" id="result-box">
+            <h2 id="prediction-result"></h2>
+            <p id="probability-result"></p>
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
